@@ -11,11 +11,21 @@ namespace MS.LibraryApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string q = "")
         {
             var db = new LibraryContainer();
 
-            var books = AutoMapper.Mapper.Map<IEnumerable<BookViewModel>>(db.Books);
+            var query = db.Books.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(q)) {
+                query = query.Where(b => 
+                    b.Name.ToLower().Contains(q.ToLower()) ||
+                    b.Author.ToLower().Contains(q.ToLower()) ||
+                    b.Description.ToLower().Contains(q.ToLower())
+                );
+            }
+
+            var books = AutoMapper.Mapper.Map<IEnumerable<BookViewModel>>(query);
 
             return View(books);
         }

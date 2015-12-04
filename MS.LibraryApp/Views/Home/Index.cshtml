@@ -15,4 +15,22 @@
 
 <hr />
 
+<div class="row">
+    <div class="col-md-3 pull-right">
+        @using (Html.BeginForm())
+        {
+            <div class="input-group">
+                @Html.TextBox("q", "", new { @class = "form-control", placeholder = "Search" })
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<hr />
+
 @Html.Partial("BookListing")
