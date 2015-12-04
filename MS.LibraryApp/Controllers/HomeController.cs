@@ -13,7 +13,11 @@ namespace MS.LibraryApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var db = new LibraryContainer();
+
+            var books = AutoMapper.Mapper.Map<IEnumerable<BookViewModel>>(db.Books);
+
+            return View(books);
         }
 
         [HttpGet]
