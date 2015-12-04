@@ -27,7 +27,11 @@ namespace MS.LibraryApp.Controllers
 
             var books = AutoMapper.Mapper.Map<IEnumerable<BookViewModel>>(query);
 
-            return View(books);
+            if (Request.IsAjaxRequest()) {
+                return PartialView("BookListing", books);
+            } else {
+                return View(books);
+            }
         }
 
         [HttpGet]

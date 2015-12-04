@@ -1,26 +1,28 @@
 ﻿@using MS.LibraryApp.Models.ViewModels
 @model IEnumerable<BookViewModel>
 
-@if (Model != null && Model.Any())
-{
-    <ul class="list-group">
-        @foreach (BookViewModel item in Model)
-        {
-            <li class="list-group-item clearfix">
-                <div class="col-md-1">
-                    <a href="@Url.Action("CreateOrEdit", new { id = item.Id })" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                </div>
-                <div class="col-md-11">
-                    <h4 class="list-group-item-heading">@Html.DisplayFor(m => item.Author): @Html.DisplayFor(m => item.Name)</h4>
-                    <p class="list-group-item-text">@Html.DisplayFor(m => item.Description)</p>
-                </div>
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <div class="alert alert-danger">No books found.</div>
-}
+<div id="book-listing">
+    @if (Model != null && Model.Any())
+    {
+        <ul class="list-group">
+            @foreach (BookViewModel item in Model)
+            {
+                <li class="list-group-item clearfix">
+                    <div class="col-md-1">
+                        <a href="@Url.Action("CreateOrEdit", new { id = item.Id })" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-11">
+                        <h4 class="list-group-item-heading">@Html.DisplayFor(m => item.Author): @Html.DisplayFor(m => item.Name)</h4>
+                        <p class="list-group-item-text">@Html.DisplayFor(m => item.Description)</p>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-danger">No books found.</div>
+    }
+</div>
