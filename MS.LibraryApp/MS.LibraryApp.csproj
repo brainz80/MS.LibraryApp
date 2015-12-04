@@ -157,6 +157,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibraryEDM.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\BookViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +215,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\CreateOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

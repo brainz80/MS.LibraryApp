@@ -1,0 +1,35 @@
+﻿@model MS.LibraryApp.Models.ViewModels.BookViewModel
+
+@{
+    ViewBag.Title = (Model.Id > 0 ? "Edit" : "Add") + " a book";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "form-control-label" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Author, new { @class = "form-control-label" })
+        @Html.TextBoxFor(m => m.Author, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "form-control-label" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+
+    if (Model.Id > 0) {
+        <button type="submit" class="btn btn-primary">Edit</button>
+        @Html.ActionLink("Remove", "Remove", new { id = Model.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you wish to remove this book?')" })
+    } else {
+        <button type="submit" class="btn btn-primary">Add</button>
+    }
+}
